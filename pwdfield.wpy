@@ -1,0 +1,89 @@
+<template>
+  <view
+    class="band-pwdfield"
+    style="border-color:{{color}}">
+    <input
+      type="tel"
+      class="band-pwdfield-input"
+      maxlength="{{sixdig ? 6 : 4}}"
+      @input="handleInput" />
+    <repeat
+      for="{{sixdig ? 6 : 4}}"
+      item="i"
+      key="{{currentValue[i]}}">
+      <view
+        class="band-pwdfield-item"
+        style="border-color:{{color}}">
+        {{display ? currentValue[i] : secret[i]}}
+      </view>
+    </repeat>
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy';
+export default class PwdField extends wepy.component {
+  props = {
+    display: {
+      type: Boolean,
+      default: true
+    },
+    sixdig: {
+      type: Boolean,
+      default: false
+    },
+    color: String
+  };
+  data = {
+    currentValue: '',
+    secret: ''
+  };
+  watch = {
+    currentValue(val) {
+      if (val.length == 0) return this.secret = '';
+      const l = val => val == 1 ? '●' : '●' + l(val-1);
+      this.secret = l(val.length);
+      this.$emit('value', val);
+    }
+  };
+  methods = {
+    handleInput(e) {
+      this.currentValue = e.detail.value;
+    }
+  };
+}
+</script>
+
+<style>
+.band-pwdfield {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: 1px solid #ff99cc;
+  border-radius: 6px;
+}
+.band-pwdfield .band-pwdfield-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  font-size: 1rpx;
+}
+.band-pwdfield .band-pwdfield-item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+  min-width: 40px;
+  min-height: 40px;
+  font-size: 16px;
+  border-right: 1px solid #ff99cc;
+}
+.band-pwdfield .band-pwdfield-item:last-child {
+  border: 0
+}
+</style>
