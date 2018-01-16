@@ -60,7 +60,7 @@ export default class PwdField extends wepy.component {
   display: flex;
   flex-direction: row;
   align-items: center;
-  border: 1px solid #ff99cc;
+  border: 1px solid #444751;
   border-radius: 6px;
 }
 .band-pwdfield .band-pwdfield-input {
@@ -81,7 +81,7 @@ export default class PwdField extends wepy.component {
   min-width: 40px;
   min-height: 40px;
   font-size: 16px;
-  border-right: 1px solid #ff99cc;
+  border-right: 1px solid #444751;
 }
 .band-pwdfield .band-pwdfield-item:last-child {
   border: 0
