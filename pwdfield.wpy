@@ -6,6 +6,7 @@
       type="tel"
       class="band-pwdfield-input"
       maxlength="{{sixdig ? 6 : 4}}"
+      password="{{!display}}"
       @input="handleInput" />
     <repeat
       for="{{sixdig ? 6 : 4}}"
@@ -13,7 +14,7 @@
       key="{{currentValue[i]}}">
       <view
         class="band-pwdfield-item"
-        style="border-color:{{color}}">
+        style="border-color:{{color}};height:{{height}}">
         {{display ? currentValue[i] : secret[i]}}
       </view>
     </repeat>
@@ -32,6 +33,7 @@ export default class PwdField extends wepy.component {
       type: Boolean,
       default: false
     },
+    height: String,
     color: String
   };
   data = {
