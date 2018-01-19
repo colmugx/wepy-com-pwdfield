@@ -1,6 +1,6 @@
 {
   "name": "wepy-com-pwdfield",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "wepy component, for use in password field.",
   "main": "pwdfield.wpy",
   "author": "ColMugX",

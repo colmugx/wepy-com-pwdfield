@@ -3,7 +3,7 @@
     class="band-pwdfield"
     style="border-color:{{color}}">
     <input
-      type="tel"
+      type="number"
       class="band-pwdfield-input"
       maxlength="{{sixdig ? 6 : 4}}"
       password="{{!display}}"
@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import wepy from 'wepy';
+import wepy from "wepy";
 export default class PwdField extends wepy.component {
   props = {
     display: {
@@ -37,15 +37,15 @@ export default class PwdField extends wepy.component {
     color: String
   };
   data = {
-    currentValue: '',
-    secret: ''
+    currentValue: "",
+    secret: ""
   };
   watch = {
     currentValue(val) {
-      if (val.length == 0) return this.secret = '';
-      const l = val => val == 1 ? '●' : '●' + l(val-1);
+      if (val.length == 0) return (this.secret = "");
+      const l = val => (val == 1 ? "●" : "●" + l(val - 1));
       this.secret = l(val.length);
-      this.$emit('value', val);
+      this.$emit("value", val);
     }
   };
   methods = {
@@ -66,6 +66,7 @@ export default class PwdField extends wepy.component {
   border-radius: 6px;
 }
 .band-pwdfield .band-pwdfield-input {
+  z-index: 0;
   position: absolute;
   top: 0;
   left: 0;
@@ -73,6 +74,9 @@ export default class PwdField extends wepy.component {
   height: 100%;
   opacity: 0;
   font-size: 1rpx;
+  color: transparent;
+  caret-color: transparent;
+  text-align: left;
 }
 .band-pwdfield .band-pwdfield-item {
   flex: 1;
@@ -86,6 +90,6 @@ export default class PwdField extends wepy.component {
   border-right: 1px solid #444751;
 }
 .band-pwdfield .band-pwdfield-item:last-child {
-  border: 0
+  border: 0;
 }
 </style>
